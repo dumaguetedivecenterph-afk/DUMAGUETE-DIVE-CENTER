@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dumaguete Dive Center | Professional Scuba Diving & Stay</title>
+    <style>
+        /* Light Theme Design Colors */
+        :root {
+            --bg-main: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-title: #0c4a6e;
+            --text-nav: #475569;
+            --border-color: #e2e8f0;
+            --header-shadow: rgba(0, 44, 112, 0.08);
+            --input-bg: #f8fafc;
+        }
+
+        /* Dark Theme Design Colors */
+        body.dark-mode {
+            --bg-main: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-title: #e2e8f0;
+            --text-nav: #cbd5e1;
+            --border-color: #334155;
+            --header-shadow: rgba(0, 0, 0, 0.3);
+            --input-bg: #1e293b;
+        }
+
+        /* Structural Framework */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Header Layout */
+        header {
+            background: var(--bg-main);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px var(--header-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0052cc;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-nav);
+            margin-left: 24px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0052cc;
+        }
+
+        /* Hero Banner layout */
+        .hero {
+            background: linear-gradient(rgba(12, 74, 110, 0.6), rgba(12, 74, 110, 0.4)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 140px 8% 160px 8%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #ffffff;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Interactive Booking Component */
+        .reservation-box {
+            background: var(--bg-main);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.12);
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+
+        .reservation-box h2 {
+            font-size: 22px;
+            color: #0052cc;
+            margin-bottom: 20px;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 180px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-nav);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+            background: var(--input-bg);
+            color: var(--text-main);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #0052cc;
+            color: #ffffff;
+            padding: 14px 35px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background: #0040a3;
+        }
+
+        /* Showcasing Grid */
+        .rooms {
+            padding: 90px 8%;
+            background: var(--bg-main);
+            transition: background-color 0.3s;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--text-title);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-nav);
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .room-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .room-img-placeholder {
+            height: 220px;
+            background: #f0fdfa;
+            border-bottom: 4px solid #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0284c7;
+            font-weight: bold;
+        }
+
+        .room-info {
+            padding: 30px;
+        }
+
+        .room-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-title);
+        }
+
+        .room-price {
+            font-size: 24px;
+            color: #0052cc;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .room-price span {
+            font-size: 14px;
+            color: var(--text-nav);
+            font-weight: 400;
+        }
+
+        /* Regulations Framework */
+        .rules {
+            padding: 90px 8%;
+            background: var(--bg-secondary);
+            transition: background-color 0.3s;
+        }
+
+        .rules-list {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .rule-item::before {
+            content: "✓";
+            color: #0052cc;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        /* Messaging Block */
+        .contact {
+            padding: 90px 8%;
+            background: var(--bg-main);
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+            background: var(--input-bg);
+            color: var(--text-main);
+        }
+
+        /* Pill Style Switch UI Element */
+        .theme-toggle {
+            background: var(--bg-secondary);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin-left: 20px;
+            transition: all 0.3s;
+        }
+
+        /* Site Baseboard */
+        footer {
+            background: #0c4a6e;
+            color: #e0f2fe;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 15px;
+        }
+
+        /* Responsive Layout Settings */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 38px; }
+            .booking-form { flex-direction: column; align-items: stretch; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation Header -->
+    <header>
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+            <img src="images/logo.png" alt="Dumaguete Dive Center Logo" style="height: 50px; width: auto;">
+            <span>DUMAGUETE DIVE CENTER</span>
+        </div>
+      <nav>
+            <a href="#reservation">Reservation</a>
+            <a href="#rooms">Rooms & Prices</a>
+            <a href="#rules">Center Rules</a>
+            <a href="#contact">Contact Us</a>
+            
+            <!-- DIRECT THEME TOGGLE BUTTON -->
+            <button class="theme-toggle" onclick="
+                var body = document.body;
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    this.innerHTML = '☀️ Day Mode';
+                    body.style.backgroundColor = '#0f172a';
+                    body.style.color = '#f8fafc';
+                } else {
+                    this.innerHTML = '🌙 Night Mode';
+                    body.style.backgroundColor = '#ffffff';
+                    body.style.color = '#1e293b';
+                }
+            ">🌙 Night Mode</button>
+        </nav>
+    </header>
+
+    <!-- Welcome Display Banner -->
+   html<section class="hero">
+    <div class="hero-content">
+      
+  <img src="https://placeholder.com" alt="Dumaguete Dive Center Logo" class="hero-logo">
+        
+        <!-- 🏷️ New Main Headline -->
+        <h1 class="hero-title">Dumaguete Dive Center</h1>
+        
+        <!-- 🌊 Subheadline Text -->
+        <p class="hero-subtitle">Explore world-class dive spots, crystal blue waters, and premium gear training right here in Negros Oriental.</p>
+        
+       
+        <a href="#rates" class="cta-btn">View Dive Packages</a>
+    </div>
+</section>
+
+    <!-- Reservation Tooling -->
